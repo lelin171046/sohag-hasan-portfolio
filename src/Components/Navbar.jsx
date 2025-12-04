@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { motion } from "motion/react"
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,18 +30,17 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+      className={`fixed top-0 left-0 right-0  z-50 transition-all duration-300 ${isScrolled
           ? "bg-slate-900/95 backdrop-blur-md border-b border-slate-800"
           : "bg-transparent"
-      }`}
+        }`}
     >
       <div className="max-w-6xl mx-auto px-4 md:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex items-center gap-2">
             <div className="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">JD</span>
+              <span className="text-white font-bold text-lg">SH</span>
             </div>
             <span className="hidden sm:inline text-white font-semibold text-lg">
               Portfolio
@@ -48,17 +48,26 @@ export function Navbar() {
           </div>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <button
+          <motion.nav className="hidden md:flex items-center gap-1">
+            {navLinks.map((link, index) => (
+              <motion.button
                 key={link.name}
                 onClick={() => handleNavClick(link.href)}
                 className="px-4 py-2 text-slate-300 hover:text-cyan-400 transition-colors font-medium"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  type: 'spring',
+                  stiffness: 100,
+                  damping: 20,
+                  delay: 0.7 + index * 0.2
+                }}
               >
                 {link.name}
-              </button>
+              </motion.button>
             ))}
-          </nav>
+          </motion.nav>
+
 
           {/* Mobile Menu Button */}
           <button
