@@ -18,10 +18,10 @@ const ContactSection = () => {
     setLoading(true);
 
     emailjs.sendForm(
-      'service_jjx4f0g',
-      'template_wvw2j3u',
+      'service_favtoyi',
+      'template_6zw8j49',
       formRef.current,
-      { publicKey: 'mLv6pCC_gZaVdJ9Yv5SyJ' }
+      { publicKey: 'rQ043VhTbJcNjFzik' }
     )
     .then(() => {
       setSubmitted(true);
@@ -53,6 +53,30 @@ const ContactSection = () => {
         <div className="grid md:grid-cols-2 gap-12">
           {/* Left Side - Contact Info */}
           <div className="space-y-8">
+            <div
+  style={{
+    position: "relative",
+    width: "100%",
+    height: 0,
+    paddingBottom: "177.778%",
+  }}
+>
+  <iframe
+    src="https://streamable.com/e/6hob2x?autoplay=1&muted=1"
+    allow="fullscreen; autoplay"
+    allowFullScreen
+    style={{
+      border: "none",
+      width: "100%",
+      height: "100%",
+      position: "absolute",
+      left: 0,
+      top: 0,
+      overflow: "hidden",
+    }}
+  ></iframe>
+</div>
+
             <div className="flex items-start gap-4">
               <div className="mt-1 p-3 bg-gradient-to-br from-cyan-500/20 to-blue-600/20 rounded-lg">
                 <Mail className="text-cyan-400" size={24} />

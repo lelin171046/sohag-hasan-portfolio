@@ -1,16 +1,17 @@
 import ContactSection from "./Components/ContactSection";
 import Footer from "./Components/Footer";
-import Hero3D from "./Components/Hero3D";
+// import HeroSection from "./Components/HeroSection";
 import AboutSection from "./Components/AboutSection";
 import Navbar from "./Components/Navbar";
 import ProjectsSection from "./Components/ProjectsSection";
+import HeroSection from "./Components/HeroSection";
 
 
 function App() {
   return (
     <div className="font-sans text-white bg-gray-900">
       <Navbar />
-      <Hero3D />
+      <HeroSection />
       {/* <ModelViewer modelPath="/assets/3d/model.glb" /> */}
       <ProjectsSection />
       <AboutSection />
