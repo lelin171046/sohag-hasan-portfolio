@@ -45,13 +45,17 @@ export default function HeroSection() {
           transition={{ delay: 1.2 }}
           className="flex flex-col sm:flex-row gap-4 mt-8"
         >
-          <button className="px-6  py-3 bg-cyan-500 hover:bg-cyan-600 text-white font-semibold rounded-lg transition-all duration-300">
+          <a href="#projects">
+            <button className="px-6  py-3 bg-cyan-500 hover:bg-cyan-600 text-white font-semibold rounded-lg transition-all duration-300">
             View Projects
           </button>
+          </a>
 
-          <button className="px-6 py-3 border border-white text-white font-semibold rounded-lg hover:bg-white hover:text-black transition-all duration-300">
+         <a href="#contact">
+           <button className="px-6 py-3 border border-white text-white font-semibold rounded-lg hover:bg-white hover:text-black transition-all duration-300">
             Get in Touch
           </button>
+         </a>
         </motion.div>
       </div>
     </section>
