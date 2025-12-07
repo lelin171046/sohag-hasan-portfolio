@@ -5,6 +5,7 @@ import AboutSection from "./Components/AboutSection";
 import Navbar from "./Components/Navbar";
 import ProjectsSection from "./Components/ProjectsSection";
 import HeroSection from "./Components/HeroSection";
+import ThumSlider from "./Components/ThumSlider";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <HeroSection />
       {/* <ModelViewer modelPath="/assets/3d/model.glb" /> */}
       <ProjectsSection />
+      <ThumSlider />
       <AboutSection />
       <ContactSection />
       <Footer />

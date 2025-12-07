@@ -1,55 +1,38 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Convert YouTube URL → ID → Thumbnail
 const getYoutubeId = (url) => {
   const regExp = /(?:youtu\.be\/|youtube\.com\/.*v=)([^&]+)/;
   const match = url.match(regExp);
   return match ? match[1] : null;
 };
 
+const getAspectClass = (url) => {
+  if (url.includes("shorts") || url.includes("reels")) return "aspect-[9/16]";
+  return "aspect-video";
+};
+
+// Generate Cloudinary thumbnail
+const getCloudinaryThumbnail = (url) => {
+  if (!url.includes("cloudinary")) return null;
+
+  return url.replace("/upload/", "/upload/so_0/") + ".jpg";
+};
+
 const videoData = [
   {
-    id: 1,
-    category: "Video Editing",
-    title: "Edit 1",
-    video: "https://www.youtube.com/watch?v=aijyqICKGfQ"
+    id: 8,
+    title: "Edit 8",
+    category: "Reels/Shorts Editing",
+    video:
+      "https://res.cloudinary.com/dg04kyz8n/video/upload/v1764954973/Insta_reels_sample_estrcx.mp4",
   },
   {
-    id: 2,
-    category: "Video Editing",
-    title: "Edit 2",
-    video: "https://www.youtube.com/watch?v=f9YbyjNYnOQ"
-  },
-  {
-    id: 3,
-    category: "Video Editing",
-    title: "Edit 3",
-    video: "https://www.youtube.com/watch?v=9WN_3GhpdJ4"
-  },
-  {
-    id: 4,
-    category: "Video Editing",
-    title: "Edit 4",
-    video: "https://www.youtube.com/watch?v=pD4d8OjqmbQ"
-  },
-  {
-    id: 5,
-    category: "Video Editing",
-    title: "Edit 5",
-    video: "https://www.youtube.com/watch?v=J0ydlAqg6_8"
-  },
-  {
-    id: 6,
-    category: "Video Editing",
-    title: "Edit 6",
-    video: "https://www.youtube.com/watch?v=W3sOezpkGWI"
-  },
-  {
-    id: 7,
-    category: "Video Editing",
-    title: "Edit 7",
-    video: "https://www.youtube.com/watch?v=YOLRjBnKo5A"
+    id: 9,
+    title: "Edit 9",
+    category: "Personal Projects",
+    video:
+      "https://res.cloudinary.com/dg04kyz8n/video/upload/v1764962293/Sohag_Stdio_ybjv5f.mp4",
   },
 ];
 
@@ -72,33 +55,39 @@ export default function ProjectsSection() {
       : videoData.filter((v) => v.category === active);
 
   return (
-    <section className="py-16 px-4 md:px-10">
-      <h2 className="text-center text-3xl md:text-4xl font-bold text-white tracking-wide">
+    <section className="py-16 px-4 md:px-10 bg-black text-white">
+      <h2 className="text-center text-3xl md:text-4xl font-bold tracking-wide">
         PROJECTS
       </h2>
 
-      {/* Buttons */}
       <div className="flex flex-wrap justify-center gap-3 mt-6">
         {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => setActive(cat)}
             className={`px-4 py-2 border border-white rounded-md text-sm font-semibold transition-all
-              ${active === cat ? "bg-white text-black" : "text-white hover:bg-blue-300/20"}`}
+              ${
+                active === cat
+                  ? "bg-white text-black"
+                  : "text-white hover:bg-white/10"
+              }`}
           >
             {cat}
           </button>
         ))}
       </div>
 
-      {/* Grid */}
       <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
         <AnimatePresence>
           {filtered.map(({ id, title, video }) => {
             const youtubeId = getYoutubeId(video);
+            const cloudThumb = getCloudinaryThumbnail(video);
+
             const thumb = youtubeId
               ? `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`
-              : ""; // fallback
+              : cloudThumb;
+
+            const aspectClass = getAspectClass(video);
 
             return (
               <motion.div
@@ -108,35 +97,36 @@ export default function ProjectsSection() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3 }}
-                className="relative group rounded-xl overflow-hidden bg-black/40 backdrop-blur-xl"
+                className={`relative rounded-xl overflow-hidden bg-black/20 backdrop-blur-xl ${aspectClass}`}
                 onMouseEnter={() => setHovered(id)}
                 onMouseLeave={() => setHovered(null)}
               >
-                {/* Thumbnail or Hover Video */}
+                {/* Hover → Show clean video */}
                 {hovered === id ? (
-                  <video
-                    src={video}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="w-full aspect-video object-cover"
-                  />
+                  youtubeId ? (
+                    <iframe
+                      src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=0&controls=0&showinfo=0&modestbranding=1&rel=0&iv_load_policy=3`}
+                      allow="autoplay"
+                      className="w-full h-full object-cover pointer-events-none"
+                      frameBorder="0"
+                    />
+                  ) : (
+                    <video
+                      src={video}
+                      autoPlay
+                      loop
+                      muted={false}
+                      playsInline
+                      className="w-full h-full object-cover"
+                    />
+                  )
                 ) : (
                   <img
                     src={thumb}
                     alt={title}
-                    className="w-full aspect-video object-cover"
+                    className="w-full h-full object-cover"
                   />
                 )}
-
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 flex flex-col justify-center items-center bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                  <div className="w-14 h-14 rounded-full bg-white/90 flex items-center justify-center text-black text-3xl font-bold group-hover:scale-110 transition">
-                    ▶
-                  </div>
-                  <p className="text-white mt-3 text-sm opacity-80">{title}</p>
-                </div>
               </motion.div>
             );
           })}
