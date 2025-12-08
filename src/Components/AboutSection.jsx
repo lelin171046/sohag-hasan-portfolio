@@ -1,72 +1,96 @@
-import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 
-export function AboutSection() {
+export default function AboutSection() {
   return (
-    <section
-      id="about"
-      className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-900 to-slate-800 flex items-center py-20 px-4 md:px-8"
-    >
-      <div className="max-w-6xl mx-auto w-full">
-        {/* Title */}
-        <h2 className="text-5xl md:text-6xl font-bold text-white mb-8 flex items-center gap-4">
-          <span className="w-12 h-1 bg-gradient-to-r from-cyan-400 to-blue-600"></span>
-          About Me
-        </h2>
+    <section className="w-full bg-gradiant-600 text-white py-20 px-6 md:px-16">
+      
+      {/* Container */}
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Left Side Text */}
-          <div className="space-y-6">
-            <p className="text-lg text-slate-300 leading-relaxed">
-              I'm a full-stack developer passionate about creating stunning,
-              performant web experiences. With expertise in modern frameworks
-              and 3D web technologies, I build applications that push the
-              boundaries of what's possible on the web.
-            </p>
+        {/* LEFT — Text Content */}
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="space-y-6"
+        >
+          <motion.h3
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="text-lg text-blue-400 tracking-wide"
+          >
+            👋 Hi, I’m a Video Editor
+          </motion.h3>
 
-            <p className="text-lg text-slate-300 leading-relaxed">
-              Whether it's crafting intuitive interfaces, optimizing backend
-              systems, or exploring cutting-edge technologies like Three.js and
-              WebGL, I approach every project with meticulous attention to
-              detail and a commitment to excellence.
-            </p>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="text-3xl md:text-4xl font-bold leading-snug"
+          >
+            Crafting Dynamic <span className="text-blue-400">Stories</span><br />
+            Through Creative Editing
+          </motion.h2>
 
-            {/* Resume Button */}
-            <div className="pt-4">
-              <button className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 transform hover:scale-105">
-                Download Resume
-                <ArrowRight size={20} />
-              </button>
-            </div>
-          </div>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+            className="text-gray-300 leading-relaxed text-sm md:text-base"
+          >
+            I specialize in editing high-quality content including <b>Shorts, Reels,
+            YouTube videos, promotional ads, cinematic edits</b> and more.  
+            My goal is simple — to turn raw footage into visually engaging stories that
+            leave an impact.
+          </motion.p>
 
-          {/* Right Side Stats */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className="p-6 bg-slate-800/50 rounded-lg border border-slate-700 hover:border-cyan-500/50 hover:bg-slate-800/80 transition-all duration-300">
-              <div className="text-3xl font-bold text-cyan-400 mb-2">50+</div>
-              <p className="text-slate-300">Projects Completed</p>
-            </div>
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8 }}
+            className="flex gap-4 mt-4"
+          >
+            <a
+              href="#projects"
+              className="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg font-semibold transition"
+            >
+              View My Work
+            </a>
 
-            <div className="p-6 bg-slate-800/50 rounded-lg border border-slate-700 hover:border-cyan-500/50 hover:bg-slate-800/80 transition-all duration-300">
-              <div className="text-3xl font-bold text-cyan-400 mb-2">5+</div>
-              <p className="text-slate-300">Years Experience</p>
-            </div>
+            <a
+              href="https://wa.me/8801775587380"
+              target="_blank"
+              className="px-6 py-3 border border-blue-400 hover:bg-blue-400/20 rounded-lg font-semibold transition"
+            >
+              WhatsApp Me
+            </a>
+          </motion.div>
+        </motion.div>
 
-            <div className="p-6 bg-slate-800/50 rounded-lg border border-slate-700 hover:border-cyan-500/50 hover:bg-slate-800/80 transition-all duration-300">
-              <div className="text-3xl font-bold text-cyan-400 mb-2">30+</div>
-              <p className="text-slate-300">Happy Clients</p>
-            
-            </div>
+        {/* RIGHT — Animated Image */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="flex justify-center relative"
+        >
+          <motion.img
+            src="https://res.cloudinary.com/dg04kyz8n/image/upload/v1765189254/473079996_2416711891993497_8233879651832613748_n_ubc7nf.jpg?auto=format&fit=crop&w=600&q=80"
+            alt="Video Editor"
+            className="w-64 md:w-80 rounded-full shadow-6xl border-4 border-blue-500 object-cover"
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 4, repeat: Infinity }}
+          />
 
-            <div className="p-6 bg-slate-800/50 rounded-lg border border-slate-700 hover:border-cyan-500/50 hover:bg-slate-800/80 transition-all duration-300">
-              <div className="text-3xl font-bold text-cyan-400 mb-2">15+</div>
-              <p className="text-slate-300">Tech Stack</p>
-            </div>
-          </div>
-        </div>
+          {/* Glow effect */}
+          <div className="absolute -bottom-6 w-44 h-44 bg-blue-500/20 blur-3xl rounded-full"></div>
+        </motion.div>
+
       </div>
-    </section>  
-
+    </section>
   );
 }
-
-export default AboutSection;

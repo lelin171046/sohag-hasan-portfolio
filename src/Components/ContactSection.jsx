@@ -52,67 +52,7 @@ const ContactSection = () => {
 
         <div className="grid md:grid-cols-2 gap-12">
           {/* Left Side - Contact Info */}
-          <div className="space-y-8">
-            <div
-  style={{
-    position: "relative",
-    width: "100%",
-    height: 0,
-    paddingBottom: "177.778%",
-  }}
->
-  <iframe
-    src="https://streamable.com/e/6hob2x?autoplay=1&muted=1"
-    allow="fullscreen; autoplay"
-    allowFullScreen
-    style={{
-      border: "none",
-      width: "100%",
-      height: "100%",
-      position: "absolute",
-      left: 0,
-      top: 0,
-      overflow: "hidden",
-    }}
-  ></iframe>
-</div>
-
-            <div className="flex items-start gap-4">
-              <div className="mt-1 p-3 bg-gradient-to-br from-cyan-500/20 to-blue-600/20 rounded-lg">
-                <Mail className="text-cyan-400" size={24} />
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold text-white mb-1">Email</h3>
-                <a href="mailto:hello@example.com" className="text-slate-300 hover:text-cyan-400 transition-colors">
-                  hello@example.com
-                </a>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <div className="mt-1 p-3 bg-gradient-to-br from-cyan-500/20 to-blue-600/20 rounded-lg">
-                <Phone className="text-cyan-400" size={24} />
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold text-white mb-1">Phone</h3>
-                <a href="tel:+1234567890" className="text-slate-300 hover:text-cyan-400 transition-colors">
-                  +1 (234) 567-890
-                </a>
-              </div>
-            </div>
-
-            <div className="space-y-4 pt-4">
-              <h3 className="text-xl font-semibold text-white">Follow Me</h3>
-              <div className="flex gap-4">
-                <a href="#" className="p-3 bg-slate-800/50 border border-slate-700 text-slate-300 rounded-lg hover:border-cyan-500/50 hover:text-cyan-400">
-                  <Github size={24} />
-                </a>
-                <a href="#" className="p-3 bg-slate-800/50 border border-slate-700 text-slate-300 rounded-lg hover:border-cyan-500/50 hover:text-cyan-400">
-                  <Linkedin size={24} />
-                </a>
-              </div>
-            </div>
-          </div>
+         
 
           {/* Right Side - Form */}
           <div className="space-y-4">

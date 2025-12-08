@@ -34,6 +34,12 @@ const videoData = [
     video:
       "https://res.cloudinary.com/dg04kyz8n/video/upload/v1764962293/Sohag_Stdio_ybjv5f.mp4",
   },
+{
+    id: 10,
+    title: "Edit 10",
+    category: "Motion Graphics",
+    video: "https://drive.google.com/file/d/120MFbyRLwumy9VkokMkBCyfN5RAN72Lv/view?usp=sharing"
+}
 ];
 
 const categories = [
@@ -55,7 +61,7 @@ export default function ProjectsSection() {
       : videoData.filter((v) => v.category === active);
 
   return (
-    <section className="py-16 px-4 md:px-10 bg-black text-white">
+    <section className="py-16 px-4 md:px-10 bg-gradient-600 text-white">
       <h2 className="text-center text-3xl md:text-4xl font-bold tracking-wide">
         PROJECTS
       </h2>

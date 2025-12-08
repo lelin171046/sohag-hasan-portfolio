@@ -10,7 +10,7 @@ export default function ThumSlider() {
   ];
 
   return (
-    <div className="bg-black py-20">
+    <div className="bg-gradient-600 id=thumbnails  py-20">
      
 
       <ThumbnailCarousel images={images} />
