@@ -1,18 +1,14 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { motion } from "motion/react"
-import { rotate } from "three/tsl";
+import { motion } from "motion/react";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [contactformOpen, setContactformOpen] = useState(false);
-  const openContactForm = () => {
-    setContactformOpen(true);
-  };
-  const closeContactForm = () => {
-    setContactformOpen(false);
-  };
+
+  const openContactForm = () => setContactformOpen(true);
+  const closeContactForm = () => setContactformOpen(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,10 +34,11 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0  z-50 transition-all duration-300 ${isScrolled
-        ? "bg-slate-900/95 backdrop-blur-md border-b border-slate-800"
-        : "bg-transparent"
-        }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-slate-900/95 backdrop-blur-md border-b border-slate-800"
+          : "bg-transparent"
+      }`}
     >
       <div className="max-w-6xl mx-auto px-4 md:px-8">
         <div className="flex items-center justify-between h-20">
@@ -65,10 +62,10 @@ export function Navbar() {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
-                  type: 'spring',
+                  type: "spring",
                   stiffness: 100,
                   damping: 20,
-                  delay: 0.7 + index * 0.2
+                  delay: 0.7 + index * 0.2,
                 }}
               >
                 {link.name}
@@ -76,17 +73,19 @@ export function Navbar() {
             ))}
           </motion.nav>
 
-         <a href="https://forms.visme.co/formsPlayer/nmnx49d7-untitled-project">
-           <motion.button
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            whileHover={{ rotateX: 20, rotateY: 10, y: -5 }}
-            transition={{ type: 'spring', stiffness: 120, damping: 20, delay: 1.5 }}
+          {/* Contact Button */}
+          <a href="https://forms.visme.co/formsPlayer/nmnx49d7-untitled-project">
+            <motion.button
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              whileHover={{ rotateX: 20, rotateY: 10, y: -5 }}
+              transition={{ type: "spring", stiffness: 120, damping: 20, delay: 1.5 }}
+              className="hidden md:inline-block ml-4 px-4 py-2 bg-gradient-to-r from-cyan-400 to-blue-600 text-white rounded-lg hover:from-cyan-500 hover:to-blue-700 transition-colors font-medium"
+            >
+              Contact Me
+            </motion.button>
+          </a>
 
-            className="hidden md:inline-block ml-4 px-4 py-2 bg-gradient-to-r from-cyan-400 to-blue-600 text-white rounded-lg hover:from-cyan-500 hover:to-blue-700 transition-colors font-medium  ">
-            Contact Me
-          </motion.button>
-         </a>
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -94,19 +93,14 @@ export function Navbar() {
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
-
         </div>
-
 
         {/* Mobile Nav */}
         {isOpen && (
           <>
             <motion.div
               initial={{ height: 0, opacity: 0 }}
-              animate={{
-                height: isOpen ? "auto" : 0,
-                opacity: isOpen ? 1 : 0,
-              }}
+              animate={{ height: "auto", opacity: 1 }}
               transition={{ type: "spring", stiffness: 100, damping: 20 }}
               className="md:hidden border-t border-slate-800 bg-slate-900/50 backdrop-blur-md"
             >
@@ -125,12 +119,7 @@ export function Navbar() {
               <motion.button
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 120,
-                  damping: 20,
-                  delay: 0.3,
-                }}
+                transition={{ type: "spring", stiffness: 120, damping: 20, delay: 0.3 }}
                 className="w-full mb-4 px-4 py-2 bg-gradient-to-r from-cyan-400 to-blue-600 text-white rounded-lg hover:from-cyan-500 hover:to-blue-700 transition-colors font-medium"
                 onClick={() => setContactformOpen(true)}
               >
@@ -146,6 +135,7 @@ export function Navbar() {
                     Get in Touch
                   </h2>
 
+                  {/* 🔥 REPLACED FORM BELOW */}
                   <form>
                     <div className="mb-4">
                       <label
@@ -211,9 +201,9 @@ export function Navbar() {
             )}
           </>
         )}
-
       </div>
     </header>
   );
 }
+
 export default Navbar;

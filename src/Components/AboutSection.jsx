@@ -6,7 +6,25 @@ export default function AboutSection() {
       
       {/* Container */}
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
+  {/* RIGHT — Animated Image */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="flex justify-center relative"
+        >
+          <motion.img
+            src="https://res.cloudinary.com/dg04kyz8n/image/upload/v1765189254/473079996_2416711891993497_8233879651832613748_n_ubc7nf.jpg?auto=format&fit=crop&w=600&q=80"
+            alt="Video Editor"
+            className="w-64 md:w-80 rounded-full shadow-6xl border-4 border-blue-500 object-cover"
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 4, repeat: Infinity }}
+          />
 
+          {/* Glow effect */}
+          <div className="absolute -bottom-6 w-44 h-44 bg-blue-500/20 blur-3xl rounded-full"></div>
+        </motion.div>
         {/* LEFT — Text Content */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -70,25 +88,7 @@ export default function AboutSection() {
           </motion.div>
         </motion.div>
 
-        {/* RIGHT — Animated Image */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="flex justify-center relative"
-        >
-          <motion.img
-            src="https://res.cloudinary.com/dg04kyz8n/image/upload/v1765189254/473079996_2416711891993497_8233879651832613748_n_ubc7nf.jpg?auto=format&fit=crop&w=600&q=80"
-            alt="Video Editor"
-            className="w-64 md:w-80 rounded-full shadow-6xl border-4 border-blue-500 object-cover"
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 4, repeat: Infinity }}
-          />
-
-          {/* Glow effect */}
-          <div className="absolute -bottom-6 w-44 h-44 bg-blue-500/20 blur-3xl rounded-full"></div>
-        </motion.div>
+      
 
       </div>
     </section>
