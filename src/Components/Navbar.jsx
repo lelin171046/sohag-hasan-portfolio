@@ -20,7 +20,7 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "About", href: "#about" },
+    { name: "About", href: "#AboutSection" },
     { name: "Projects", href: "#projects" },
     { name: "Thumbnails", href: "#thumbnails" },
     { name: "Contact", href: "#contact" },

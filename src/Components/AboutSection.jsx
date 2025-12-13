@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 export default function AboutSection() {
   return (
-    <section className="w-full bg-gradiant-600 text-white py-20 px-6 md:px-16">
+    <section id="AboutSection" className="w-full bg-gradient-600 text-white py-20 px-6 md:px-16">
       
       {/* Container */}
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
@@ -15,7 +15,7 @@ export default function AboutSection() {
           className="flex justify-center relative"
         >
           <motion.img
-            src="https://res.cloudinary.com/dg04kyz8n/image/upload/v1765189254/473079996_2416711891993497_8233879651832613748_n_ubc7nf.jpg?auto=format&fit=crop&w=600&q=80"
+            src="https://res.cloudinary.com/dg04kyz8n/image/upload/v1765604595/ps_upjffk.png"
             alt="Video Editor"
             className="w-64 md:w-80 rounded-full shadow-6xl border-4 border-blue-500 object-cover"
             animate={{ y: [0, -10, 0] }}
@@ -39,7 +39,12 @@ export default function AboutSection() {
             transition={{ delay: 0.3 }}
             className="text-lg text-blue-400 tracking-wide"
           >
-            👋 Hi, I’m a Video Editor
+            👋 Hi, I’m <motion.span
+            animate={{ scale: [1, 1.1, 1] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            
+            className="text-2xl text-bold text-white"
+            >Sohag Hasan</motion.span>
           </motion.h3>
 
           <motion.h2

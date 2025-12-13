@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import DomeGallery from "./DomeGallery";
 
 export default function ThumbnailCarousel({ images }) {
   return (
@@ -9,7 +10,7 @@ export default function ThumbnailCarousel({ images }) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        
+        id="thumbnails"
         className="text-3xl md:text-4xl font-bold tracking-wide">
           Thumbnail Design Showcase
         </motion.h2>
@@ -17,92 +18,12 @@ export default function ThumbnailCarousel({ images }) {
           Sleek, engaging thumbnail designs crafted for maximum viewer attention.
         </p>
       </div>
-
+      <div  style={{ width: '100vw', height: '100vh' }}>
+      <DomeGallery />
+    </div>
       {/* Slider */}
       <div className="relative w-full overflow-hidden bg-gradient-600 py-4">
-        <style>{`
-          .carousel-track {
-            display: flex;
-            gap: 1.5rem; 
-            width: max-content;
-            animation: scroll-left var(--time) linear infinite;
-          }
-
-          .carousel-paused {
-            animation-play-state: paused !important;
-          }
-
-          .carousel-item {
-            flex-shrink: 0;
-            width: 22rem; 
-            height: 14rem;
-            transition: transform 0.4s ease-in-out;
-            border-radius: 1rem;
-            overflow: hidden;
-          }
-
-          /* RESPONSIVE SIZES */
-          @media (max-width: 1024px) {
-            .carousel-item { width: 18rem; height: 12rem; }
-          }
-
-          @media (max-width: 768px) {
-            .carousel-item { width: 16rem; height: 10rem; }
-          }
-
-          @media (max-width: 480px) {
-            .carousel-item { width: 14rem; height: 9rem; }
-          }
-
-          .carousel-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease-in-out;
-          }
-
-          /* Hover enlarge */
-          .carousel-item:hover {
-            transform: scale(1.12);
-            z-index: 10;
-          }
-
-          .carousel-item:hover img {
-            transform: scale(1.15);
-          }
-
-          @keyframes scroll-left {
-            from { transform: translateX(0); }
-            to {
-              transform: translateX(calc(-1 * (var(--singleWidth) * var(--total)) - (1.5rem * var(--total))));
-            }
-          }
-        `}</style>
-
-        <div
-          className="carousel-track"
-          id="track"
-          style={{
-            "--time": "40s",
-            "--total": images.length,
-            "--singleWidth": "22rem",
-          }}
-        >
-          {[...images, ...images].map((img, index) => (
-            <div
-              key={index}
-              className="carousel-item"
-              onMouseEnter={() => {
-                document.getElementById("track").classList.add("carousel-paused");
-              }}
-              onMouseLeave={() => {
-                document.getElementById("track").classList.remove("carousel-paused");
-              }}
-            >
-              <img src={img} alt="thumbnail" />
-            </div>
-          ))}
-        </div>
+       
       </div>
     </div>
   );

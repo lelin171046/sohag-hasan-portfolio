@@ -21,16 +21,17 @@ const videos = [
     url: "https://res.cloudinary.com/dg04kyz8n/video/upload/v1765258154/The_Most_Haunted_Hotel_Ship_In_America_720p_luxwho.mp4",
     thumbnail:
       "https://res.cloudinary.com/dg04kyz8n/video/upload/so_0/v1765258154/The_Most_Haunted_Hotel_Ship_In_America_720p_luxwho.jpg",
-    aspectRatio: "portrait",
+    aspectRatio: "landscape",
   },
   {
     id: 2,
     title: "PR IMON Gig",
     category: "UGC/Pro-Diva",
-    url: "https://res.cloudinary.com/dg04kyz8n/video/upload/v1765257996/PR_IMON_With_Gig_Image_i60e4l.mp4",
+   url: "https://res.cloudinary.com/dg04kyz8n/video/upload/v1764954973/Insta_reels_sample_estrcx.mp4",
     thumbnail:
-      "https://res.cloudinary.com/dg04kyz8n/video/upload/so_0/v1765257996/PR_IMON_With_Gig_Image_i60e4l.jpg",
-    aspectRatio: "landscape",
+      "https://res.cloudinary.com/dg04kyz8n/video/upload/so_0/v1764954973/Insta_reels_sample_estrcx.jpg",
+      
+    aspectRatio: "portrait",
   },
   {
     id: 3,
@@ -39,7 +40,7 @@ const videos = [
     url: "https://res.cloudinary.com/dg04kyz8n/video/upload/v1765209886/Fitness_AI_App_1_dzkiev.mp4",
     thumbnail:
       "https://res.cloudinary.com/dg04kyz8n/video/upload/so_0/v1765209886/Fitness_AI_App_1_dzkiev.jpg",
-    aspectRatio: "portrait",
+    aspectRatio: "square",
   },
   {
     id: 4,
@@ -48,7 +49,7 @@ const videos = [
     url: "https://res.cloudinary.com/dg04kyz8n/video/upload/v1765209647/Main_Humanizer_3_xqmgzz.mp4",
     thumbnail:
       "https://res.cloudinary.com/dg04kyz8n/video/upload/so_0/v1765209647/Main_Humanizer_3_xqmgzz.jpg",
-    aspectRatio: "landscape",
+    aspectRatio: "portrait",
   },
   {
     id: 5,
@@ -68,6 +69,33 @@ const videos = [
       "https://res.cloudinary.com/dg04kyz8n/video/upload/so_0/v1765209769/PR_Humanizer_Reel_3_hxqrf4.jpg",
     aspectRatio: "square",
   },
+{
+    id: 7,
+    title: "Digital Product Promo",
+    category: "Digital Products",
+    url:"https://res.cloudinary.com/dg04kyz8n/video/upload/v1765258154/The_Most_Haunted_Hotel_Ship_In_America_720p_luxwho.mp4",
+    thumbnail:
+      "https://res.cloudinary.com/dg04kyz8n/video/upload/so_0/v1765258154/The_Most_Haunted_Hotel_Ship_In_America_720p_luxwho.jpg",
+    aspectRatio: "landscape",
+},
+{
+    id: 8,  
+    title: "E-commerce Ad Edit",
+    category: "SaaS/E-commerce",
+    url:"https://res.cloudinary.com/dg04kyz8n/video/upload/v1765209917/PR_IMON_With_Gig_Image_m5ijot.mp4",
+    thumbnail:
+      "https://res.cloudinary.com/dg04kyz8n/video/upload/so_0/v1765209917/PR_IMON_With_Gig_Image_m5ijot.jpg",
+    aspectRatio: "landscape",
+},
+{
+    id: 9,
+    title: "Animated Splash Intro",
+    category: "Splash Animations",  
+    url:"https://res.cloudinary.com/dg04kyz8n/video/upload/v1764954973/Insta_reels_sample_estrcx.mp4",
+    thumbnail:
+      "https://res.cloudinary.com/dg04kyz8n/video/upload/so_0/v1764954973/Insta_reels_sample_estrcx.jpg",
+    aspectRatio: "portrait",
+}
 ];
 
 export default function ProjectsSection() {
@@ -91,7 +119,7 @@ export default function ProjectsSection() {
   };
 
   return (
-    <section className="min-h-screen bg-black px-4 py-12 md:px-8 lg:px-16">
+    <section id="projects" className="min-h-screen bg-black px-4 py-12 md:px-8 lg:px-16">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}

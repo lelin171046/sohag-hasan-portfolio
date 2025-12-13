@@ -1,115 +1,139 @@
-import { useRef, useState } from 'react';
-import { Mail, Phone, Linkedin, Github, Send } from 'lucide-react';
-import emailjs from '@emailjs/browser';
+// Component inspired by @BalintFerenczy on X
+// https://codepen.io/BalintFerenczy/pen/KwdoyEN
+
+import React, { useRef, useState } from "react"
+import emailjs from "@emailjs/browser"
+import ElectricBorder from "./ElectricBorder"
 
 const ContactSection = () => {
-  const formRef = useRef();
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [loading, setLoading] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const formRef = useRef()
+  const [sending, setSending] = useState(false)
+  const [success, setSuccess] = useState(false)
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  const sendEmail = (e) => {
+    e.preventDefault()
+    setSending(true)
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setLoading(true);
-
-    emailjs.sendForm(
-      'service_favtoyi',
-      'template_6zw8j49',
-      formRef.current,
-      { publicKey: 'rQ043VhTbJcNjFzik' }
-    )
-    .then(() => {
-      setSubmitted(true);
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setSubmitted(false), 5000);
-    })
-    .catch((err) => {
-      console.error('EmailJS error:', err);
-      alert('Failed to send message.');
-    })
-    .finally(() => setLoading(false));
-  };
+    emailjs
+      .sendForm(
+        "service_favtoyi",      // Replace
+        "template_6zw8j49",     // Replace
+        formRef.current,
+        "rQ043VhTbJcNjFzik"       // Replace
+      )
+      .then(
+        () => {
+          setSending(false)
+          setSuccess(true)
+          formRef.current.reset()
+          setTimeout(() => setSuccess(false), 3000)
+        },
+        () => {
+          setSending(false)
+          alert("Something went wrong. Try again.")
+        }
+      )
+  }
 
   return (
-    <section
-      id="contact"
-      className="min-h-screen bg-gradient-to-b from-slate-800 via-slate-900 to-slate-900 py-20 px-4 md:px-8"
-    >
-      <form ref={formRef} onSubmit={handleSubmit} className="max-w-6xl mx-auto space-y-12">
-        <h2 className="text-5xl md:text-6xl font-bold text-white mb-4 flex items-center gap-4">
-          <span className="w-12 h-1 bg-gradient-to-r from-cyan-400 to-blue-600"></span>
-          Get In Touch
-        </h2>
+    <div className="hero bg-gradiant-600 min-h-screen px-4 py-14">
+      <ElectricBorder
+        color="#7df9ff"
+        speed={1}
+        chaos={0.4}
+        thickness={2}
+        style={{ borderRadius: 20 }}
+      >
+        <div id="contact" className="hero-content flex-col lg:flex-row gap-16 p-6">
+          {/* Left Content */}
+          <div className="max-w-xl text-center lg:text-left">
+            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
+              Get In Touch
+            </h1>
+            <p className="py-4 text-base opacity-80">
+              I help creators, brands, and businesses tell better stories with
+              professional <span className="font-semibold">video editing</span>,
+              <span className="font-semibold"> motion graphics</span>, and
+              <span className="font-semibold"> color grading</span>.
+              <br />
+              <br />
+              Tell me about your project and I’ll reply within 24 hours.
+            </p>
+          </div>
 
-        <p className="text-slate-400 text-lg mb-16 max-w-2xl">
-          Have a project in mind or want to collaborate? I'd love to hear from you.
-        </p>
+          {/* Right - Form */}
+          <div className="card bg-blur text-white w-full max-w-md shadow-2xl">
+            <div className="card-body">
+              <form ref={formRef} onSubmit={sendEmail} className="space-y-4">
 
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Left Side - Contact Info */}
-         
+                <div>
+                  <label className="label">Your Name</label>
+                  <input
+                    type="text"
+                    name="user_name"
+                    required
+                    placeholder="John Doe"
+                    className="input input-bordered w-full"
+                  />
+                </div>
 
-          {/* Right Side - Form */}
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">Full Name</label>
-              <input
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 text-white rounded-lg"
-                placeholder="Your name"
-              />
+                <div>
+                  <label className="label">Email Address</label>
+                  <input
+                    type="email"
+                    name="user_email"
+                    required
+                    placeholder="example@email.com"
+                    className="input input-bordered w-full"
+                  />
+                </div>
+
+                <div>
+                  <label className="label">Project Type</label>
+                  <select
+                    name="project_type"
+                    className="select select-bordered w-full"
+                    required
+                  >
+                    <option disabled selected>Select project type</option>
+                    <option>Video Editing</option>
+                    <option>Motion Graphics</option>
+                    <option>Color Grading</option>
+                    <option>Reels / Shorts Editing</option>
+                    <option>VFX & Cleanup</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="label">Message</label>
+                  <textarea
+                    name="message"
+                    required
+                    placeholder="Tell me about your project..."
+                    className="textarea textarea-bordered w-full h-32"
+                  ></textarea>
+                </div>
+
+                {success && (
+                  <p className="text-green-500 text-sm">
+                    Message sent successfully!
+                  </p>
+                )}
+
+                <button
+                  className="btn btn-neutral w-full mt-2"
+                  disabled={sending}
+                  type="submit"
+                >
+                  {sending ? "Sending..." : "Send Message"}
+                </button>
+              </form>
             </div>
-
-            <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">Email Address</label>
-              <input
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 text-white rounded-lg"
-                placeholder="you@email.com"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">Message</label>
-              <textarea
-                name="message"
-                rows="5"
-                value={formData.message}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 text-white rounded-lg resize-none"
-                placeholder="Your message here..."
-              />
-            </div>
-
-            <button
-              type="submit"
-              disabled={loading || submitted}
-              className="w-full px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-lg flex justify-center gap-2"
-            >
-              {submitted ? "Message Sent!" : loading ? "Sending..." : (
-                <>
-                  <Send size={20} /> Send Message
-                </>
-              )}
-            </button>
           </div>
         </div>
-      </form>
-    </section>
-  );
-};
+      </ElectricBorder>
+    </div>
+  )
+}
 
-export default ContactSection;
+export default ContactSection
