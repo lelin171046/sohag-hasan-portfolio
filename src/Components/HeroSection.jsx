@@ -17,33 +17,15 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-black/60"></div>
 
       {/* Content (Centered) */}
-      <div className="relative z-20 h-full flex flex-col items-center justify-center text-center px-6 md:px-10 max-w-3xl mx-auto">
+      <div className="relative z-20 h-full flex flex-col items-center justify-end-safe text-center px-6 md:px-10 max-w-3xl mx-auto">
 
-        <motion.h1
-          initial={{ opacity: 0, y: -40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-white text-4xl md:text-6xl font-extrabold leading-tight"
-        >
-          Editing Excellence
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-gray-300 text-lg md:text-xl mt-4 max-w-xl"
-        >
-          I craft engaging, emotional, and visually stunning edits — bringing your footage to life with
-          precision and creativity.
-        </motion.p>
 
         {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2 }}
-          className="flex flex-col sm:flex-row gap-4 mt-8"
+          className="flex flex-col sm:flex-row gap-8 mb-8"
         >
           <a href="#projects">
             <button className="px-6  py-3 bg-cyan-500 hover:bg-cyan-600 text-white font-semibold rounded-lg transition-all duration-300">

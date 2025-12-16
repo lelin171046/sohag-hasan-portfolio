@@ -85,7 +85,7 @@ export function Navbar() {
               Contact Me
             </motion.button>
           </a>
-
+            
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
